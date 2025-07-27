@@ -1,6 +1,5 @@
 // @ts-check
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
 
 const site = process.env.CI
   ? "https://istrdgroup.github.io"
@@ -11,5 +10,4 @@ export default defineConfig({
   site,
   base: "/",
   output: "static",
-  integrations: [tailwind()],
 });
