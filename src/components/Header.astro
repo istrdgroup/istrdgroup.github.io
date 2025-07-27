@@ -2,40 +2,28 @@
 import { buttonVariants } from "@/components/ui/button";
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur supports-backdrop-filter:bg-primary/60">
-  <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-2 text-primary-foreground">
+<header
+  class="sticky top-0 z-50 w-full border-b bg-primary/95 backdrop-blur supports-backdrop-filter:bg-primary/60"
+>
+  <div class="container px-4 mx-auto flex h-16 items-center justify-between">
+    <a
+      href="/"
+      class="flex items-center gap-2 text-lg font-semibold text-primary-foreground"
+      aria-label="Homepage"
+    >
       <img src="/home.svg" alt="IST Logo" class="w-12 h-12" />
       <span>Integrated Systems Technologies R&D Group</span>
     </a>
-    <a
-      href="https://github.com/istrdgroup"
-      class="text-primary-foreground hover:text-primary-foreground/80 transition-colors"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      GitHub
-    </a>
-  </nav>
-</header>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const navbar = document.getElementById('navbar');
-    let lastScrollTop = 0;
-    
-    window.addEventListener('scroll', function() {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      
-      if (scrollTop > 100) {
-        // Add fixed positioning when scrolled down
-        navbar?.classList.add('fixed', 'top-0', 'left-0', 'right-0', 'z-50');
-      } else {
-        // Remove fixed positioning when at the top
-        navbar?.classList.remove('fixed', 'top-0', 'left-0', 'right-0', 'z-50');
-      }
-      
-      lastScrollTop = scrollTop;
-    });
-  });
-</script>
+    <nav class="flex items-center gap-2">
+      <a
+        href="https://github.com/istrdgroup"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-primary-foreground hover:text-primary-foreground/80 transition-colors"
+      >
+        GitHub
+      </a>
+    </nav>
+  </div>
+</header>
