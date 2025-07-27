@@ -1,7 +1,6 @@
 // @ts-check
-import react from "@astrojs/react";
-import tailwindcss from "@tailwindcss/vite";
-import { defineConfig, fontProviders } from "astro/config";
+import { defineConfig } from "astro/config";
+import tailwind from "@astrojs/tailwind";
 
 const site = process.env.CI
   ? "https://istrdgroup.github.io"
@@ -12,17 +11,5 @@ export default defineConfig({
   site,
   base: "/",
   output: "static",
-  integrations: [react()],
-  experimental: {
-    fonts: [
-      {
-        provider: fontProviders.google(),
-        name: "Inter",
-        cssVariable: "--font-inter",
-      },
-    ],
-  },
-  vite: {
-    plugins: [tailwindcss()],
-  },
+  integrations: [tailwind()],
 });
