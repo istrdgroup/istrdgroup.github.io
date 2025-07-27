@@ -28,7 +28,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
       <div class="absolute inset-0 bg-black/40"></div>
       
       <!-- Click to unmute overlay -->
-      <div id="unmuteOverlay" class="absolute top-4 right-4 z-20 bg-black/50 backdrop-blur-sm rounded-lg p-3 cursor-pointer hover:bg-black/70 transition-all duration-300">
+      <div id="unmuteOverlay" class="absolute top-4 right-4 z-20 bg-black/50 backdrop-blur-sm rounded-lg p-3 cursor-pointer hover:bg-black/70 transition-all duration-300 touch-manipulation select-none">
         <div class="flex items-center gap-2 text-white">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.617.793L4.5 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.5l3.883-3.707a1 1 0 011.414.07zM12.293 7.293a1 1 0 011.414 0L15 8.586l1.293-1.293a1 1 0 111.414 1.414L16.414 10l1.293 1.293a1 1 0 01-1.414 1.414L15 11.414l-1.293 1.293a1 1 0 01-1.414-1.414L13.586 10l-1.293-1.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -97,16 +97,50 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   </section>
 
   <script>
-    // Handle unmute functionality
+    // Handle unmute functionality with mobile support
     document.addEventListener('DOMContentLoaded', function() {
       const video = document.getElementById('heroVideo') as HTMLVideoElement;
       const unmuteOverlay = document.getElementById('unmuteOverlay');
       
       if (video && unmuteOverlay) {
-        unmuteOverlay.addEventListener('click', function() {
-          video.muted = false;
-          unmuteOverlay.style.display = 'none';
+        // Handle both click and touch events for mobile compatibility
+        const handleUnmute = function(e: Event) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          try {
+            // Try to unmute the video
+            video.muted = false;
+            
+            // On mobile, we might need to play the video again after unmuting
+            if (video.paused) {
+              video.play().catch(function(error) {
+                console.log('Video play failed:', error);
+              });
+            }
+            
+            // Hide the overlay
+            unmuteOverlay.style.display = 'none';
+            
+            // Add a class to indicate unmuted state
+            video.classList.add('unmuted');
+            
+          } catch (error) {
+            console.log('Unmute failed:', error);
+          }
+        };
+        
+        // Add multiple event listeners for better mobile support
+        unmuteOverlay.addEventListener('click', handleUnmute);
+        unmuteOverlay.addEventListener('touchend', handleUnmute);
+        unmuteOverlay.addEventListener('touchstart', function(e) {
+          e.preventDefault(); // Prevent default touch behavior
         });
+        
+        // Also make the entire overlay area clickable
+        unmuteOverlay.style.cursor = 'pointer';
+        unmuteOverlay.style.userSelect = 'none';
+        unmuteOverlay.style.webkitUserSelect = 'none';
       }
     });
   </script>
