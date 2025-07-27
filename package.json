@@ -2,6 +2,7 @@
   "name": "istrdgroup-website",
   "version": "1.0.0",
   "description": "Integrated Systems Technologies R&D Group - Research Project Landing Page",
+  "packageManager": "pnpm@8.15.0",
   "repository": {
     "url": "https://github.com/istrdgroup/istrdgroup.github.io",
     "type": "git"
