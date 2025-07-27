@@ -4,41 +4,110 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
-  title="Astro shadcn/ui template"
-  description="This template helps you build apps with Astro, Tailwind CSS, and shadcn/ui."
+  title="Integrated Systems Technologies R&D Group"
+  description="Advancing research in physical AI."
 >
-  <section
-    class="container px-4 mx-auto grid items-center gap-6 pt-6 pb-8 md:py-10"
-  >
-    <div class="flex max-w-[980px] flex-col items-start gap-2">
-      <h1
-        class="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl"
+  <!-- Hero Section with Video Background -->
+  <section class="relative min-h-screen bg-black text-white overflow-hidden">
+    <!-- Video Background -->
+    <div class="absolute inset-0 z-0">
+      <video 
+        id="heroVideo"
+        class="w-full h-full object-cover"
+        autoplay 
+        muted 
+        loop
+        playsinline
+        poster="/placeholder-video-poster.jpg"
       >
-        Astro shadcn/ui template <br class="hidden sm:inline" />
-        built with Radix UI and Tailwind CSS.
-      </h1>
-      <p class="max-w-[700px] text-lg text-muted-foreground">
-        Accessible and customizable components you can copy and paste into your
-        apps. Free. Open Source.
-      </p>
+        <source src="/hero-video.webm?v=3" type="video/webm">
+        <!-- Fallback background if video doesn't load -->
+        <div class="absolute inset-0 bg-gradient-primary"></div>
+      </video>
+      <!-- Overlay for better text readability -->
+      <div class="absolute inset-0 bg-black/40"></div>
+      
+      <!-- Click to unmute overlay -->
+      <div id="unmuteOverlay" class="absolute top-4 right-4 z-20 bg-black/50 backdrop-blur-sm rounded-lg p-3 cursor-pointer hover:bg-black/70 transition-all duration-300">
+        <div class="flex items-center gap-2 text-white">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.617.793L4.5 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.5l3.883-3.707a1 1 0 011.414.07zM12.293 7.293a1 1 0 011.414 0L15 8.586l1.293-1.293a1 1 0 111.414 1.414L16.414 10l1.293 1.293a1 1 0 01-1.414 1.414L15 11.414l-1.293 1.293a1 1 0 01-1.414-1.414L13.586 10l-1.293-1.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+          </svg>
+          <span class="text-sm font-medium">Click to unmute</span>
+        </div>
+      </div>
     </div>
-    <div class="flex gap-4">
-      <a
-        href="https://ui.shadcn.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        class={buttonVariants()}
-      >
-        Documentation
-      </a>
-      <a
-        href="https://github.com/area44/astro-shadcn-ui-template"
-        target="_blank"
-        rel="noopener noreferrer"
-        class={buttonVariants({ variant: "outline" })}
-      >
-        GitHub
-      </a>
+    
+    <!-- Content -->
+    <div class="relative z-10 container mx-auto px-4 pt-20 pb-16 h-screen flex items-center">
+      <div class="max-w-4xl">
+        <div class="animate-slide-in-left">
+          <h1 class="text-6xl lg:text-8xl font-bold leading-tight mb-8">
+            Changing your idea of what's
+            <span class="text-accent">possible.</span>
+          </h1>
+          <p class="text-2xl lg:text-3xl text-gray-200 mb-12 leading-relaxed max-w-3xl">
+            Discover practical solutions designed to tackle today's—and tomorrow's—toughest research challenges.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-6">
+            <a href="#solutions" class="btn-primary text-lg px-8 py-4">
+              Explore Solutions
+            </a>
+            <a href="#contact" class="btn-secondary border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-4">
+              Get Started
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
+
+  <!-- Solutions Section -->
+  <section id="solutions" class="bg-white text-black py-20">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-10 text-center">Our Solutions</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="p-8 rounded-xl shadow-lg border border-gray-100 bg-gray-50 hover:shadow-2xl transition">
+          <h3 class="text-2xl font-semibold mb-4 text-primary">Robotics</h3>
+          <p class="text-gray-700 mb-4">Advanced robotics for real-world applications, from automation to exploration.</p>
+        </div>
+        <div class="p-8 rounded-xl shadow-lg border border-gray-100 bg-gray-50 hover:shadow-2xl transition">
+          <h3 class="text-2xl font-semibold mb-4 text-primary">AI & Machine Learning</h3>
+          <p class="text-gray-700 mb-4">Intelligent systems that learn, adapt, and solve complex problems.</p>
+        </div>
+        <div class="p-8 rounded-xl shadow-lg border border-gray-100 bg-gray-50 hover:shadow-2xl transition">
+          <h3 class="text-2xl font-semibold mb-4 text-primary">Automation</h3>
+          <p class="text-gray-700 mb-4">Streamlining processes for efficiency and reliability in research and industry.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="bg-gradient-dark text-white py-20">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-8 text-center">Get in Touch</h2>
+      <form class="max-w-xl mx-auto bg-black/30 p-8 rounded-xl shadow-lg space-y-6">
+        <input type="text" placeholder="Your Name" class="w-full p-4 rounded bg-white/90 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary" />
+        <input type="email" placeholder="Your Email" class="w-full p-4 rounded bg-white/90 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary" />
+        <textarea placeholder="Your Message" class="w-full p-4 rounded bg-white/90 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary" rows="4"></textarea>
+        <button type="submit" class="btn-primary w-full">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    // Handle unmute functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const video = document.getElementById('heroVideo') as HTMLVideoElement;
+      const unmuteOverlay = document.getElementById('unmuteOverlay');
+      
+      if (video && unmuteOverlay) {
+        unmuteOverlay.addEventListener('click', function() {
+          video.muted = false;
+          unmuteOverlay.style.display = 'none';
+        });
+      }
+    });
+  </script>
 </BaseLayout>

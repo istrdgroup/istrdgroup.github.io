@@ -1,30 +1,29 @@
 ---
-import ThemeToggle from "@/components/ThemeToggle.astro";
 import { buttonVariants } from "@/components/ui/button";
 ---
 
 <header
-  class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60"
+  class="sticky top-0 z-50 w-full border-b bg-primary/95 backdrop-blur supports-backdrop-filter:bg-primary/60"
 >
   <div class="container px-4 mx-auto flex h-16 items-center justify-between">
     <a
       href="/"
-      class="flex items-center gap-2 text-lg font-semibold"
+      class="flex items-center gap-2 text-lg font-semibold text-primary-foreground"
       aria-label="Homepage"
     >
-      <span>Home</span>
+      <img src="/home.svg" alt="IST Logo" class="w-12 h-12" />
+      <span>Integrated Systems Technologies R&D Group</span>
     </a>
 
     <nav class="flex items-center gap-2">
       <a
-        href="https://github.com/area44/astro-shadcn-ui-template"
+        href="https://github.com/istrdgroup"
         target="_blank"
         rel="noopener noreferrer"
-        class={buttonVariants({ variant: "ghost" })}
+        class="text-primary-foreground hover:text-primary-foreground/80 transition-colors"
       >
         GitHub
       </a>
-      <ThemeToggle />
     </nav>
   </div>
 </header>
