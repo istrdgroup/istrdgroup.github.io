@@ -1,29 +1,24 @@
 ---
 import { buttonVariants } from "@/components/ui/button";
+import ThemeToggle from "./ThemeToggle.astro";
 ---
 
-<header
-  class="sticky top-0 z-50 w-full border-b bg-primary/95 backdrop-blur supports-backdrop-filter:bg-primary/60"
->
-  <div class="container px-4 mx-auto flex h-16 items-center justify-between">
-    <a
-      href="/"
-      class="flex items-center gap-2 text-lg font-semibold text-primary-foreground"
-      aria-label="Homepage"
-    >
+<header class="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur supports-backdrop-filter:bg-primary/60">
+  <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 text-primary-foreground">
       <img src="/home.svg" alt="IST Logo" class="w-12 h-12" />
       <span>Integrated Systems Technologies R&D Group</span>
     </a>
-
-    <nav class="flex items-center gap-2">
+    <div class="flex items-center gap-4">
+      <ThemeToggle />
       <a
         href="https://github.com/istrdgroup"
+        class="text-primary-foreground hover:text-primary-foreground/80 transition-colors"
         target="_blank"
         rel="noopener noreferrer"
-        class="text-primary-foreground hover:text-primary-foreground/80 transition-colors"
       >
         GitHub
       </a>
-    </nav>
-  </div>
+    </div>
+  </nav>
 </header>

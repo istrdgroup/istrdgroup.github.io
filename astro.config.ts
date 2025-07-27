@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from "astro/config";
+import react from "@astrojs/react";
 
 const site = process.env.CI
   ? "https://istrdgroup.github.io"
@@ -10,4 +11,5 @@ export default defineConfig({
   site,
   base: "/",
   output: "static",
+  integrations: [react()],
 });
