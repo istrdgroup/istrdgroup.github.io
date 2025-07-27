@@ -103,27 +103,47 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
       const unmuteOverlay = document.getElementById('unmuteOverlay');
       
       if (video && unmuteOverlay) {
+        // Check if we're on mobile
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
         // Handle both click and touch events for mobile compatibility
         const handleUnmute = function(e: Event) {
           e.preventDefault();
           e.stopPropagation();
           
+          console.log('Unmute button clicked/touched');
+          
           try {
-            // Try to unmute the video
-            video.muted = false;
-            
-            // On mobile, we might need to play the video again after unmuting
-            if (video.paused) {
-              video.play().catch(function(error) {
-                console.log('Video play failed:', error);
-              });
+            // For mobile, we need to handle this differently
+            if (isMobile) {
+              // On mobile, we need to ensure the video is playing first
+              if (video.paused) {
+                video.play().then(() => {
+                  // After successful play, unmute
+                  video.muted = false;
+                  unmuteOverlay.style.display = 'none';
+                  video.classList.add('unmuted');
+                  console.log('Mobile: Video unmuted successfully');
+                }).catch((error) => {
+                  console.log('Mobile: Video play failed:', error);
+                  // If play fails, try to unmute anyway
+                  video.muted = false;
+                  unmuteOverlay.style.display = 'none';
+                });
+              } else {
+                // Video is already playing, just unmute
+                video.muted = false;
+                unmuteOverlay.style.display = 'none';
+                video.classList.add('unmuted');
+                console.log('Mobile: Video unmuted successfully');
+              }
+            } else {
+              // Desktop behavior
+              video.muted = false;
+              unmuteOverlay.style.display = 'none';
+              video.classList.add('unmuted');
+              console.log('Desktop: Video unmuted successfully');
             }
-            
-            // Hide the overlay
-            unmuteOverlay.style.display = 'none';
-            
-            // Add a class to indicate unmuted state
-            video.classList.add('unmuted');
             
           } catch (error) {
             console.log('Unmute failed:', error);
@@ -133,14 +153,39 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
         // Add multiple event listeners for better mobile support
         unmuteOverlay.addEventListener('click', handleUnmute);
         unmuteOverlay.addEventListener('touchend', handleUnmute);
+        
+        // Prevent default touch behavior that might interfere
         unmuteOverlay.addEventListener('touchstart', function(e) {
-          e.preventDefault(); // Prevent default touch behavior
+          e.preventDefault();
         });
         
-        // Also make the entire overlay area clickable
+        // Also handle touchcancel
+        unmuteOverlay.addEventListener('touchcancel', function(e) {
+          e.preventDefault();
+        });
+        
+        // Make the entire overlay area clickable and prevent text selection
         unmuteOverlay.style.cursor = 'pointer';
         unmuteOverlay.style.userSelect = 'none';
         unmuteOverlay.style.webkitUserSelect = 'none';
+        
+        // Add visual feedback for mobile
+        if (isMobile) {
+          unmuteOverlay.addEventListener('touchstart', function() {
+            this.style.transform = 'scale(0.95)';
+          });
+          
+          unmuteOverlay.addEventListener('touchend', function() {
+            this.style.transform = 'scale(1)';
+          });
+        }
+        
+        // Debug info
+        console.log('Video element found:', !!video);
+        console.log('Unmute overlay found:', !!unmuteOverlay);
+        console.log('Is mobile:', isMobile);
+        console.log('Video muted state:', video.muted);
+        console.log('Video paused state:', video.paused);
       }
     });
   </script>
