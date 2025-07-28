@@ -1,36 +1,82 @@
-# Astro shadcn/ui template
+# IST R&D Group Website
 
-A modern starter template using [Astro](https://astro.build/), [Tailwind CSS](https://tailwindcss.com/), and [shadcn/ui](https://ui.shadcn.com/) - perfect for building fast, accessible, and themeable web apps.
+Official website for the **Integrated Systems Technologies R&D Group** (IST R&D Group), showcasing our research and development work in physical AI, robotics, automation, and intelligent systems.
 
----
+## About
+
+The Integrated Systems Technologies R&D Group (IST R&D Group) is dedicated to advancing research in physical AI and developing practical solutions for today's and tomorrow's toughest research challenges. Our work spans across:
+
+- **Robotics**: Advanced robotics for real-world applications, from automation to exploration
+- **AI & Machine Learning**: Intelligent systems that learn, adapt, and solve complex problems  
+- **Automation**: Streamlining processes for efficiency and reliability in research and industry
+
+## Technology Stack
+
+This website is built with modern web technologies:
+
+- **[Astro](https://astro.build/)** - Static site generator for performance
+- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
+- **[React](https://react.dev/)** - Interactive components
+- **TypeScript** - Type-safe development
 
 ## Getting Started
 
-Before you begin, ensure that you have **Node.js** and **pnpm** installed.
+### Prerequisites
 
-### Setup
+- **Node.js** (v18 or higher)
+- **pnpm** (recommended) or npm
+
+### Development Setup
 
 ```bash
-git clone https://github.com/area44/astro-shadcn-ui-template
-cd astro-shadcn-ui-template
+# Clone the repository
+git clone https://github.com/istrdgroup/istrdgroup.github.io.git
+cd istrdgroup.github.io
+
+# Install dependencies
 pnpm install
+
+# Start development server
 pnpm dev
 ```
 
-Open your browser and go to [http://localhost:4321](http://localhost:4321) to see the app running.
+Open your browser and navigate to [http://localhost:4321](http://localhost:4321) to view the website.
 
-## Adding Components
+### Build for Production
 
-shadcn/ui provides pre-built, accessible UI components. To add one:
+```bash
+# Build the site
+pnpm build
 
-1. Follow the official [Astro installation guide](https://ui.shadcn.com/docs/installation/astro).
-2. Pick a component (e.g., [Accordion](https://ui.shadcn.com/docs/components/accordion), [Dialog](https://ui.shadcn.com/docs/components/dialog)) and follow the usage instructions.
+# Preview the build
+pnpm preview
+```
 
-> [!NOTE] 
-> In Astro, an [island](https://docs.astro.build/en/concepts/islands/) is an interactive component rendered on the client. For complex or dynamic components, check [Add a Shadcn UI Component | Space Madness Stack](https://spacemadness.dev/docs/add-a-shadcn-ui-component)
+## Project Structure
 
-If you're new to using React (or other frameworks) inside Astro, start with the [Framework Components guide](https://docs.astro.build/en/guides/framework-components/).
+```
+src/
+├── components/     # Reusable UI components
+├── layouts/        # Page layouts and templates
+├── lib/           # Utility functions and helpers
+├── pages/         # Astro pages and routes
+└── styles/        # Global styles and CSS
+```
+
+## Deployment
+
+This website is configured for deployment on:
+
+- **GitHub Pages** (via GitHub Actions)
+
+## Contributing
+
+We welcome contributions! Please feel free to submit issues and pull requests.
 
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+---
+
+**IST R&D Group** - Changing your idea of what's possible.
