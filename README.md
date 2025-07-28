@@ -1,4 +1,4 @@
-# IST R&D Group Website
+# Integrated Systems Technologies R&D Group Website
 
 Official website for the **Integrated Systems Technologies R&D Group** (IST R&D Group), showcasing our research and development work in physical AI, robotics, automation, and intelligent systems.
 
